@@ -1,0 +1,3 @@
+sensor  KEYWORD1
+read    KEYWORD2
+debug   KEYWORD2

@@ -1,0 +1,2 @@
+DIP	KEYWORD1
+readProgram	KEYWORD2
