@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "DIP.hpp"
 
 DIP::DIP(uint8_t a, uint8_t b, uint8_t c, uint8_t d) : bit0{a}, bit1{b}, bit2{c}, bit3{d} {

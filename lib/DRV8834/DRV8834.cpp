@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "DRV8834.hpp"
 
 DRV8834::DRV8834(uint8_t x, uint8_t y, uint8_t z) : ENBL{x}, PHASE{y}, steps{z} {

@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "sensor.hpp"
 
 sensor::sensor(uint8_t x, uint16_t y) : port{x}, threshold{y} {

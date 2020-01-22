@@ -1,4 +1,3 @@
-#include "Arduino.h"
 #include "PING28015.hpp"
 
 PING28015::PING28015(uint8_t x, uint16_t y) : pin{x}, mindiff{y}{};
