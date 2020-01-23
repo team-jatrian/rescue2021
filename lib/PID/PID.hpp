@@ -9,12 +9,13 @@ class myPID {
         double output;
         double setpoint;
         uint32_t minMicros;
-        myPID(double, uint32_t, double, double, double);
+        myPID(double, uint32_t, double, double, double, double, double);
         void update(double), reset();
     private:
         double error, lastError;
         double timeDiff, lastTime = 0;
         double proportional, integral = 0, derivative;
+        double maxOutput, minOutput;
         void calculateTerms(), update(double);
 };
 

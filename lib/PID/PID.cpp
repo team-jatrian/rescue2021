@@ -1,6 +1,6 @@
 #include "PID.hpp"
 
-myPID::myPID(double x , uint32_t y, double a, double b, double c) : setpoint{x}, minMicros{y}, Kp{a}, Ki{b}, Kd{c} {};
+myPID::myPID(double x , uint32_t y, double a, double b, double c, double max = 100, double min = -100) : setpoint{x}, minMicros{y}, Kp{a}, Ki{b}, Kd{c}, maxOutput{max}, minOutput{min} {};
 
 void myPID::update(double x){
     error = setpoint - x;
@@ -20,6 +20,11 @@ void myPID::reset(){
 void myPID::calculateTerms(){
     proportional = error; 
     integral += error * timeDiff;
+    double iTerm = integral * Ki;
+    if ((iTerm > maxOutput) || (iTerm < minOutput)){ //prevents windup in i term
+        integral -= error * timeDiff;
+    }
     derivative = (error - lastError) / timeDiff;
-    output = proportional * Kp + integral * Ki + (-Kd * derivative);
+    if (integral < minOutput || integral > maxOutput)
+    output = proportional * Kp + iTerm+ (-Kd * derivative);
 }
