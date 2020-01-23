@@ -9,8 +9,8 @@ class myPID {
         double output;
         double setpoint;
         uint32_t minMicros;
-        myPID(double, uint32_t);
-        void update(), reset();
+        myPID(double, uint32_t, double, double, double);
+        void update(double), reset();
     private:
         double error, lastError;
         double timeDiff, lastTime = 0;
