@@ -26,5 +26,5 @@ void myPID::calculateTerms(){
     }
     derivative = (error - lastError) / timeDiff;
     if (integral < minOutput || integral > maxOutput)
-    output = proportional * Kp + iTerm+ (-Kd * derivative);
+    output = proportional * Kp + iTerm + (-Kd * derivative);
 }
