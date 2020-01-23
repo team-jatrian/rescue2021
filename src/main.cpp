@@ -1,8 +1,9 @@
 #include <Arduino.h>
+#include "macros.h"
 #include "drv.h"
 
 void setup(){
-    setSwitch();
+    pinMode(SWITCH, INPUT);
 }
 
 void loop(){

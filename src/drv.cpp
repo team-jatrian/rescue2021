@@ -1,12 +1,4 @@
-#include <Arduino.h>
-#include <DRV8834.hpp>
 #include "drv.h"
-
-DRV8834 left(2, 23, 17), right(29, 26, 17); //(ENBL, PHASE, "STEPS")
-
-void setSwitch(){
-    pinMode(SWITCH, INPUT);
-}
 
 void drv(int8_t x, int8_t y) {
   if (digitalRead(SWITCH)) {

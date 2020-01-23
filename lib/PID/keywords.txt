@@ -1,0 +1,3 @@
+myPID   KEYWORD2
+update  KEYWORD1
+reset   KEYWORD1
