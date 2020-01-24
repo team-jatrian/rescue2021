@@ -1,15 +1,23 @@
 #include <Arduino.h>
 #include "macros.h"
-#include "drv.hpp"
 #include "line.hpp"
-#include "sensors.hpp"
-#include "sensordebug.hpp"
+#include "us.hpp"
+#include "obstacle.h"
+#include "cam.hpp"
 
 void setup(){
+    pinMode(LED_BUILTIN, OUTPUT);
+    digitalWrite(LED_BUILTIN, HIGH);
     pinMode(SWITCH, INPUT);
+    CAM.begin(115200, SERIAL_8O2);
 }
 
 void loop(){
-    drive_line();
+    //spn(readString());
+    /*
+    if (front.read() < 45){
+        obstacle();
+    }
+    drive_line();*/
 }
 
