@@ -13,7 +13,7 @@ void setup(){
 }
 
 void loop(){
-    //spn(readString());
+    spn(readString());
     /*
     if (front.read() < 45){
         obstacle();
