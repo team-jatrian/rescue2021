@@ -3,7 +3,6 @@
 #include "line.hpp"
 #include "us.hpp"
 #include "obstacle.h"
-#include "cam.hpp"
 
 void setup(){
     pinMode(LED_BUILTIN, OUTPUT);
@@ -13,11 +12,12 @@ void setup(){
 }
 
 void loop(){
-    spn(readString());
-    /*
+    if (char(CAM.read()) == '5'){
+        while(1){drv(0, 0);};
+    }
     if (front.read() < 45){
         obstacle();
     }
-    drive_line();*/
+    drive_line();
 }
 
