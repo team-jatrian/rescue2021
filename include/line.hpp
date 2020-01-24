@@ -2,7 +2,7 @@
 #include <PID.hpp>
 #include "macros.h"
 
-myPID line(0, 50, 1, 1, 1);
+extern myPID line;
 
 void drive_line();
 double getDeviation();

@@ -5,10 +5,10 @@
 
 class myPID {
     public:
-        double Kp, Ki, Kd;
         double output;
         double setpoint;
         uint32_t minMicros;
+        double Kp, Ki, Kd;
         myPID(double, uint32_t, double, double, double, double, double);
         void update(double), reset();
     private:
@@ -16,7 +16,7 @@ class myPID {
         double timeDiff, lastTime = 0;
         double proportional, integral = 0, derivative;
         double maxOutput, minOutput;
-        void calculateTerms(), update(double);
+        void calculateTerms();
 };
 
 #endif

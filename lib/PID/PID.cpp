@@ -1,6 +1,6 @@
 #include "PID.hpp"
 
-myPID::myPID(double x , uint32_t y, double a, double b, double c, double max = 100, double min = -100) : setpoint{x}, minMicros{y}, Kp{a}, Ki{b}, Kd{c}, maxOutput{max}, minOutput{min} {};
+myPID::myPID(double x , uint32_t y, double a, double b, double c, double max, double min) : setpoint{x}, minMicros{y}, Kp{a}, Ki{b}, Kd{c}, maxOutput{max}, minOutput{min} {};
 
 void myPID::update(double x){
     error = setpoint - x;
