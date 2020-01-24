@@ -5,4 +5,7 @@
 extern myPID line;
 
 void drive_line();
-double getDeviation();
+int8_t getDeviation();
+
+extern uint8_t sensors[5];
+extern const int8_t weights[5];
