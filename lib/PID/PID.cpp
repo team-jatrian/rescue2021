@@ -5,7 +5,7 @@ myPID::myPID(double x , uint32_t y, double a, double b, double c, double max, do
 void myPID::update(double x){
     error = setpoint - x;
     timeDiff = (micros() - lastTime); //update Times
-    if (timeDiff > minMicros) {calculateTerms();};
+    if (timeDiff >= minMicros) {calculateTerms();};
     lastError = error; //save for next iteration
     lastTime = micros();
 }
@@ -24,6 +24,6 @@ void myPID::calculateTerms(){
     if ((iTerm > maxOutput) || (iTerm < minOutput)){ //prevents windup in i term
         integral -= error * timeDiff;
     }
-    derivative = (error - lastError) / timeDiff;
+    derivative = (error - lastError) / timeDiff * 1000;
     output = proportional * Kp + iTerm + (-Kd * derivative);
 }

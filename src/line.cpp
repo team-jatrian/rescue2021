@@ -2,23 +2,23 @@
 #include "drv.hpp"
 #include "sensors.hpp"
 
-myPID line(double(0), 50, double(40), double(0), double(0), double(100), double(-100));
+myPID line(double(0), 10, double(16), double(0), double(), double(0), double(-100));
 
-const int8_t weights[5] = {-2, -1, 0, 1, 2};
+const int8_t weights[5] = {-4, -2, 0, 2, 4};
 
 void drive_line(){
     line.update(getDeviation());
     if (line.output > 0){
-        drv(abs(line.output), 100);
+        drv(-abs(int(line.output)), /*abs(int(line.output))*/ 70);
     }
     
     else if (line.output < 0){
-        drv(100, abs(line.output));
+        drv(70 /*abs(int(line.output))*/, -abs(int(line.output)));
     }
     else {
-        drv(70, 70);
+        drv(50, 50);
     }
-    spn(line.output);
+    spn(int(line.output));
 }
 
 int8_t getDeviation(){

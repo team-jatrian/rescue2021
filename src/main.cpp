@@ -2,6 +2,8 @@
 #include "macros.h"
 #include "drv.hpp"
 #include "line.hpp"
+#include "sensors.hpp"
+#include "sensordebug.hpp"
 
 void setup(){
     pinMode(SWITCH, INPUT);
