@@ -4,10 +4,12 @@
 #include <Arduino.h>
 #include "macros.h"
 #include "drv.hpp"
+#include "sensors.hpp"
 
-void testReceive();
-void centerOnLine();
+char testReceive();
 String readString();
+void camGreen();
+void driveOnlyInner(char);
 
 extern char opcode;
 extern String buffer;

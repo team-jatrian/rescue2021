@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include "macros.h"
+#include "CAM.hpp"
 #include "DIP.hpp"
 #include "line.hpp"
 #include "us.hpp"

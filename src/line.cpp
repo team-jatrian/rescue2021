@@ -16,7 +16,7 @@ void drive_line(){
         drv(70 /*abs(int(line.output))*/, -abs(int(line.output)));
     }
     else {
-        drv(70, 70);
+        drv(50, 50);
     }
     //spn(int(line.output));
 }
