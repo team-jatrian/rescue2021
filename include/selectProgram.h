@@ -1,0 +1,15 @@
+#ifndef SELECT_PROGRAM_H
+#define SELECT_PROGRAM_H
+
+#include <Arduino.h>
+#include "macros.h"
+#include "DIP.hpp"
+#include "line.hpp"
+#include "us.hpp"
+#include "sensordebug.hpp"
+
+extern DIP ps;
+
+void selectProgram();
+
+#endif

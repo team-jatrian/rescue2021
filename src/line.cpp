@@ -16,9 +16,9 @@ void drive_line(){
         drv(70 /*abs(int(line.output))*/, -abs(int(line.output)));
     }
     else {
-        drv(50, 50);
+        drv(70, 70);
     }
-    spn(int(line.output));
+    //spn(int(line.output));
 }
 
 int8_t getDeviation(){

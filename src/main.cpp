@@ -1,8 +1,6 @@
 #include <Arduino.h>
 #include "macros.h"
-#include "line.hpp"
-#include "us.hpp"
-#include "obstacle.h"
+#include "selectProgram.h"
 
 void setup(){
     pinMode(LED_BUILTIN, OUTPUT);
@@ -12,12 +10,6 @@ void setup(){
 }
 
 void loop(){
-    if (char(CAM.read()) == '5'){
-        while(1){drv(0, 0);};
-    }
-    if (front.read() < 45){
-        obstacle();
-    }
-    drive_line();
+    selectProgram();
 }
 

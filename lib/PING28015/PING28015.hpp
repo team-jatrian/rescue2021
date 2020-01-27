@@ -13,7 +13,7 @@ class PING28015 {
 
   public:
     PING28015(uint8_t, uint16_t);
-    int16_t read();
+    uint16_t read();
 	uint16_t mindiff = 300;
 
 };

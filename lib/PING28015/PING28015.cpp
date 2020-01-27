@@ -2,7 +2,7 @@
 
 PING28015::PING28015(uint8_t x, uint16_t y) : pin{x}, mindiff{y}{};
 
-int16_t PING28015::read() {
+uint16_t PING28015::read() {
       if (millis() - lastMillis < mindiff){
         return lastDistance;
       }
