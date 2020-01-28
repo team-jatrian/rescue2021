@@ -33,23 +33,21 @@ void camGreen(){
         switch(testReceive()){
             case '1':
                 driveOnlyInner('L');
-                drv(70, 70, 300);
+                drv(50, 50, 150);
                 drv(-70, 70, 400);
                 while(!M.read()){
                     drv(-70, 70);
                 }
-                drv(0, 0, 1000);
                 drv(70, 70, 100);
                 CAM.clear();
                 return;
             case '2':
                 driveOnlyInner('R');
-                drv(70, 70, 300);
+                drv(50, 50, 150); 
                 drv(70, -70, 400);
                 while(!M.read()){
                     drv(70, -70);
                 }
-                drv(0, 0, 1000);
                 drv(70, 70, 100);
                 CAM.clear();
                 return;
@@ -58,7 +56,8 @@ void camGreen(){
                 CAM.clear();
                 return;
             case '0':
-                drv(70, 70, 500);
+                driveOnlyInner('A');
+                drv(70, 70, 200);
                 CAM.clear();
                 return;
             }
@@ -72,10 +71,27 @@ void driveOnlyInner(char x){
                 drv(0, 0, 50);
                 return;
             }
-            else if (LI.read()){
+            else if (LI.read() && !RI.read()){
                 drv(-50, 50);
             }
-            else if (RI.read()){
+            else if (RI.read() && !LI.read()){
+                drv(50, -50);
+            }
+            else {
+                drv(50, 50);
+            }
+        }
+    }
+    else if (x == 'R') {
+        while(1){
+            if (R.read()){
+                drv(0, 0, 50);
+                return;
+            }
+            else if (LI.read() && !RI.read()){
+                drv(-50, 50);
+            }
+            else if (RI.read() && !LI.read()){
                 drv(50, -50);
             }
             else {
@@ -85,14 +101,14 @@ void driveOnlyInner(char x){
     }
     else {
         while(1){
-            if (R.read()){
+            if (R.read() || L.read()){
                 drv(0, 0, 50);
                 return;
             }
-            else if (LI.read()){
+            else if (LI.read() && !RI.read()){
                 drv(-50, 50);
             }
-            else if (RI.read()){
+            else if (RI.read() && !LI.read()){
                 drv(50, -50);
             }
             else {
