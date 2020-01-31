@@ -8,6 +8,7 @@
 #include "line.hpp"
 #include "us.hpp"
 #include "sensordebug.hpp"
+#include "room.h"
 
 extern DIP ps;
 

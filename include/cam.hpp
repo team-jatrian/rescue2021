@@ -6,7 +6,7 @@
 #include "drv.hpp"
 #include "sensors.hpp"
 
-char testReceive();
+char camReceive();
 String readString();
 void camGreen();
 void driveOnlyInner(char);
@@ -14,4 +14,4 @@ void driveOnlyInner(char);
 extern char opcode;
 extern String buffer;
 
-#endif
+#endif 

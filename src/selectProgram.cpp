@@ -18,6 +18,9 @@ void selectProgram(){
             drv(70, 70, 200);
             break;
         default:
+            /*if (L.value() > 300 || R.value() > 300) || LI.value() > 300 || RI.value() > 300){
+                room();
+            }*/
             onUsRead(70);
             camGreen();
             drive_line();

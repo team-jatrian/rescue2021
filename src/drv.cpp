@@ -4,7 +4,6 @@ DRV8834 left(2, 23, 17), right(29, 26, 17); //(ENBL, PHASE, "STEPS")
 
 void drv(int8_t x, int8_t y) {
   if (digitalRead(SWITCH)) {
-    //delay(2);
     left.drive(x);
     right.drive(y);
   }

@@ -1,12 +1,11 @@
 #include "cam.hpp"
 
-String buffer = "";
+String buffer = ""; 
 char opcode = '0';
 
-char testReceive(){
+char camReceive(){
     if (CAM.available() > 0){
         char opcode = CAM.read();
-        spn(opcode);
         return opcode;
     }
     return '\0';
@@ -28,36 +27,42 @@ String readString(){
 }
 
 void camGreen(){
-    if (testReceive() == '5'){
+    if (camReceive() == '5'){
         drv(0, 0, 1000);
-        switch(testReceive()){
+        switch(camReceive()){
             case '1':
                 driveOnlyInner('L');
-                drv(50, 50, 150);
+                drv(50, 50, 300);  
+                /*while(L.read()){
+                    drv(50, 50);
+                }*/
                 drv(-70, 70, 400);
                 while(!M.read()){
                     drv(-70, 70);
                 }
-                drv(70, 70, 100);
+                drv(70, 70, 200);
                 CAM.clear();
                 return;
             case '2':
                 driveOnlyInner('R');
-                drv(50, 50, 150); 
-                drv(70, -70, 400);
+                drv(50, 50, 300);
+                /*while(R.read()){
+                    drv(50, 50);
+                } */
+                drv(70, -70, 300);
                 while(!M.read()){
                     drv(70, -70);
                 }
-                drv(70, 70, 100);
+                drv(70, 70, 200);
                 CAM.clear();
                 return;
             case '3': 
-                drv(-70, 70, 1700);
+                drv(-70, 70, 1500);
                 CAM.clear();
                 return;
             case '0':
                 driveOnlyInner('A');
-                drv(70, 70, 200);
+                drv(70, 70, 300);
                 CAM.clear();
                 return;
             }
