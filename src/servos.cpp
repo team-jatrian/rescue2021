@@ -1,13 +1,14 @@
 #include "servos.hpp"
 
-Servo heber, kipper, kamera;
+Servo heber, kipper, camera;
 
 void setupServos(){
     heber.attach(19);
     kipper.attach(20);
-    kamera.attach(21);
-    heber.write(0);
-    kipper.write(0);
-    kamera.write(0);
+    camera.attach(21);
+    heber.write(HEBER_NEUTRAL);
+    kipper.write(KIPPER_NEUTRAL);
+    camera.write(CAM_NEUTRAL);
+    delay(100);
 }
 

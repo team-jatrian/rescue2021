@@ -6,10 +6,11 @@
 #include "drv.hpp"
 #include "sensors.hpp"
 
+#define CAM Serial4
+
 char camReceive();
 String readString();
 void camGreen();
-void driveOnlyInner(char);
 
 extern char opcode;
 extern String buffer;

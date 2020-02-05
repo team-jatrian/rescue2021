@@ -9,14 +9,14 @@ void setup(){
     digitalWrite(LED_BUILTIN, HIGH);
     pinMode(SWITCH, INPUT);
     CAM.begin(115200, SERIAL_8O2);
-    kamera.write(90);
+    camera.write(90);
 }
 
 void loop(){
     //selectProgram();
-    kamera.write(0);
+    camera.write(0);
     delay(500);
-    kamera.write(70);
+    camera.write(70);
     delay(500);
 }
 

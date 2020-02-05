@@ -4,7 +4,11 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-extern Servo heber, kipper, kamera;
+#define HEBER_NEUTRAL 0
+#define KIPPER_NEUTRAL 0
+#define CAM_NEUTRAL 0
+
+extern Servo heber, kipper, camera;
 
 void setupServos();
 
