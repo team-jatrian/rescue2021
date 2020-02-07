@@ -2,9 +2,11 @@
 #include "macros.h"
 #include "selectProgram.h"
 #include "servos.hpp"
+#include "gyro.hpp"
 
 void setup(){
     setupServos();
+    setupGyro();
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, HIGH);
     pinMode(SWITCH, INPUT);
@@ -13,10 +15,7 @@ void setup(){
 }
 
 void loop(){
-    //selectProgram();
-    camera.write(0);
-    delay(500);
-    camera.write(70);
-    delay(500);
+    spn(euler());
+    delay(100);
 }
 
