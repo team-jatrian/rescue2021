@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include <PID.hpp>
 #include "macros.h"
+#include "drv.hpp"
+#include "sensors.hpp"
 
 extern myPID line;
 
