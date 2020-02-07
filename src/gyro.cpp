@@ -26,7 +26,6 @@ int euler(){
 void driveDegrees(int16_t angle){
     imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
     drv(0, 0, 50);
-    spn("here");
     int16_t destination = relativeAngle(euler.x(), angle);
     if (angle < 0){
         while(1){
@@ -36,7 +35,6 @@ void driveDegrees(int16_t angle){
             }
             drv(-50, 50);
         }
-        spn("if");
         return;
     }
     else if (angle > 0){
@@ -47,11 +45,9 @@ void driveDegrees(int16_t angle){
             }
             drv(50, -50);
         }
-        spn("else if");
         return;
     }
     else {
-        spn("else");
         return;
      }
 }
