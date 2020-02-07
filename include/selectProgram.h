@@ -9,6 +9,7 @@
 #include "us.hpp"
 #include "sensordebug.hpp"
 #include "room.h"
+#include "gyro.hpp"
 
 extern DIP ps;
 

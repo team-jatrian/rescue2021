@@ -6,8 +6,8 @@
 
 
 #define HEBER_P 20
-#define KIPPER_P 13
-#define CAM_P 21
+#define KIPPER_P 21
+#define CAM_P 13
 #define HEBER_NEUTRAL 150
 #define KIPPER_NEUTRAL 0
 #define CAM_NEUTRAL 140

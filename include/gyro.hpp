@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <macros.h>
+#include <drv.hpp>
 #include <i2c_t3.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055_t3.h>
@@ -16,5 +17,7 @@ extern Adafruit_BNO055 bno;
 
 void setupGyro();
 int euler();
+void driveDegrees(int16_t);
+int relativeAngle(int16_t, int16_t);
 
 #endif
