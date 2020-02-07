@@ -4,9 +4,13 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#define HEBER_NEUTRAL 0
+
+#define HEBER_P 20
+#define KIPPER_P 13
+#define CAM_P 21
+#define HEBER_NEUTRAL 150
 #define KIPPER_NEUTRAL 0
-#define CAM_NEUTRAL 0
+#define CAM_NEUTRAL 140
 
 extern Servo heber, kipper, camera;
 

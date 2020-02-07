@@ -8,6 +8,10 @@
 #include <Adafruit_BNO055_t3.h>
 #include <utility/imumaths.h>
 
+#define SCL 33 
+#define SDA 34
+#define RST 30
+
 extern Adafruit_BNO055 bno;
 
 void setupGyro();

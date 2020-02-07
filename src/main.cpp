@@ -10,12 +10,11 @@ void setup(){
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, HIGH);
     pinMode(SWITCH, INPUT);
-    CAM.begin(115200, SERIAL_8O2);
-    camera.write(90);
+    CAM.begin(115200, SERIAL_8O2); 
 }
 
 void loop(){
-    spn(euler());
-    delay(100);
+    //spn(euler());
+    selectProgram();
 }
 
