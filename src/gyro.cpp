@@ -18,11 +18,6 @@ void setupGyro(){
     delay(700);*/
 }
 
-int euler(){  
-    imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-    return euler.x();
-}
-
 void driveDegrees(int16_t angle){
     imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
     drv(0, 0, 50);
@@ -52,28 +47,17 @@ void driveDegrees(int16_t angle){
      }
 }
 
-int relativeAngle(int16_t fromAngle, int16_t addAngle){
-    if (addAngle < 0){
-        int16_t partialAngle = fromAngle + addAngle;
-        if (partialAngle < 0){
-            return (360 + partialAngle);
-        }
-        else {
-            return partialAngle;
-        }
+int relativeAngle(int16_t from, int16_t to){
+    int16_t targetAngle = from + to;
+    if (targetAngle < 0){
+        return 360 + targetAngle;
     }
-    if (addAngle > 0){
-        int16_t theoreticalAngle = fromAngle + addAngle;
-        if (theoreticalAngle > 360){
-            return (theoreticalAngle - 360);
-        }
-        else {
-            return theoreticalAngle;
-        }
+    else if (targetAngle > 360){
+        return targetAngle - 360;
     }
     else {
-        return (fromAngle + addAngle);
+        return targetAngle;
     }
-    return 0;
 }
+    
 
