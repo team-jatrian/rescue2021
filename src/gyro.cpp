@@ -3,7 +3,11 @@
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
 
 void setupGyro(){
-    //pinMode(RST, OUTPUT);
+    pinMode(RST, OUTPUT);
+    digitalWrite(RST, LOW); //reset routine
+    delayMicroseconds(30);
+    digitalWrite(RST, HIGH);
+    delay(800);
     Wire.setSDA(SDA);
     Wire.setSCL(SCL);
     if(!bno.begin())
@@ -12,10 +16,6 @@ void setupGyro(){
         while(1);
     }
     bno.setExtCrystalUse(true);
-    /*digitalWrite(RST, LOW); //reset routine
-    delayMicroseconds(30);
-    digitalWrite(RST, HIGH);
-    delay(700);*/
 }
 
 void driveDegrees(int16_t angle){
