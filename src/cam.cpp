@@ -29,35 +29,24 @@ String readString(){
 void camGreen(){
     if (camReceive() == '5'){
         drv(0, 0, 1000);
+        CAM.clear();
         switch(camReceive()){
             case '1':
                 driveOnlyInner('L');
                 drv(50, 50, 300);  
-                /*while(L.read()){
-                    drv(50, 50);
-                }*/
-                drv(-70, 70, 400);
-                while(!M.read()){
-                    drv(-70, 70);
-                }
+                driveDegrees(-80);
                 drv(70, 70, 200);
                 CAM.clear();
                 return;
             case '2':
                 driveOnlyInner('R');
                 drv(50, 50, 300);
-                /*while(R.read()){
-                    drv(50, 50);
-                } */
-                drv(70, -70, 300);
-                while(!M.read()){
-                    drv(70, -70);
-                }
+                driveDegrees(80);
                 drv(70, 70, 200);
                 CAM.clear();
                 return;
             case '3': 
-                drv(-70, 70, 1500);
+                driveDegrees(180);
                 CAM.clear();
                 return;
             case '0':
