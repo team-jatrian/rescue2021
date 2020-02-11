@@ -5,6 +5,7 @@
 #include "macros.h"
 #include "drv.hpp"
 #include "sensors.hpp"
+#include "gyro.hpp"
 
 #define CAM Serial4
 

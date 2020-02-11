@@ -8,7 +8,8 @@ void selectProgram(){
             debug();
             break;
         case 15:
-            room();
+            driveDegrees(-90);
+            drv(0, 0, 500);
             break;
         default:
             /*if (L.value() > 300 || R.value() > 300) || LI.value() > 300 || RI.value() > 300){

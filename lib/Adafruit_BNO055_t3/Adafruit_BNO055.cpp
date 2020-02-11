@@ -32,7 +32,7 @@
 #include <limits.h>
 #include <math.h>
 
-#include "Adafruit_BNO055.h"
+#include "Adafruit_BNO055_t3.h"
 
 /*!
  *  @brief  Instantiates a new Adafruit_BNO055 class
