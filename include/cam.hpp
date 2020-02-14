@@ -11,12 +11,11 @@
 #define CAM_INTERRUPT 35
 
 void setupCam();
-void camISR();
 char camReceive();
 String readString();
 void camGreen();
+void driveDirection();
 
-extern bool camStatus;
 extern char opcode;
 extern String buffer;
 

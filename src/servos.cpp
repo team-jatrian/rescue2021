@@ -6,11 +6,11 @@ void setupServos(){
     heber.attach(HEBER_P);
     kipper.attach(KIPPER_P);
     camera.attach(CAM_P);
+    camera.write(CAM_NEUTRAL);
+    delay(1000);
+    camera.detach();
     heber.write(HEBER_NEUTRAL);
     kipper.write(KIPPER_NEUTRAL);
-    camera.write(CAM_NEUTRAL);
-    delay(2000);
-    camera.detach();
 }
 
 void armDown(){

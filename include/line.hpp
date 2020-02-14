@@ -11,6 +11,7 @@ extern myPID line;
 
 void drive_line();
 int8_t getDeviation();
+void altDrive(bool);
 
 extern uint8_t sensors[5];
 extern const int8_t weights[5];

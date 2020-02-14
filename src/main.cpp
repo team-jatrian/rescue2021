@@ -7,9 +7,10 @@
 #include "cam.hpp"
 
 void setup(){
-    setupCam();
+    //setupCam();
+    CAM.begin(115200, SERIAL_8O2);
     setupServos();
-    setupGyro();
+    //setupGyro();
     pinMode(SWITCH, INPUT);
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, HIGH);

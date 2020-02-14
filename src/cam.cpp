@@ -1,29 +1,16 @@
 #include "cam.hpp"
 
-bool camStatus = false;
 String buffer = ""; 
 char opcode = '0';
 
 void setupCam(){
     CAM.begin(115200, SERIAL_8O2);
     pinMode(CAM_INTERRUPT, INPUT);
-    //attachInterrupt(CAM_INTERRUPT, camISR, CHANGE);
     repeatMillis(10000){
-        if (digitalRead(CAM_INTERRUPT)){
+        if (digitalReadFast(CAM_INTERRUPT)){
             break;
         }
     }
-}
-
-void camISR(){
-    spn(digitalRead(CAM_INTERRUPT));
-    /*
-    if (digitalRead(CAM_INTERRUPT)){
-        camStatus = true;
-    }
-    else {
-        camStatus = false;
-    }*/
 }
 
 char camReceive(){
@@ -53,31 +40,41 @@ void camGreen(){
     if (camReceive() == '5'){
         drv(0, 0, 1000);
         CAM.clear();
-        switch(camReceive()){
-            case '1':
-                driveOnlyInner('L');
-                drv(50, 50, 300);  
-                //driveDegrees(-80);
-                drv(-50, 50, 700);
-                drv(70, 70, 200);
-                CAM.clear();
-                return;
-            case '2':
-                driveOnlyInner('R');
-                drv(50, 50, 300);
-                drv(50, -50, 700);
-                drv(70, 70, 200);
-                CAM.clear();
-                return;
-            case '3': 
-                drv(-50, 50, 1400);
-                CAM.clear();
-                return;
-            case '0':
-                driveOnlyInner('A');
-                drv(70, 70, 300);
-                CAM.clear();
-                return;
-            }
+        driveDirection();
     }
+}
+
+void driveDirection(){
+    switch(camReceive()){
+        case '1':
+            driveOnlyInner('L');
+            drv(50, 50, 100);  
+            //driveDegrees(-80);
+            drv(0, 0, 200);
+            drv(-50, 50, 800);
+            drv(0, 0, 200);
+            drv(70, 70, 100);
+            CAM.clear();
+            return;
+        case '2':
+            driveOnlyInner('R');
+            drv(50, 50, 100);
+            drv(0, 0, 200);
+            drv(50, -50, 800);
+            drv(0, 0, 200);
+            drv(70, 70, 100);
+            CAM.clear();
+            return;
+        case '3': 
+            drv(-50, 50, 1600);
+            CAM.clear();
+            return;
+        case '0':
+            driveOnlyInner('A');
+            drv(70, 70, 300);
+            CAM.clear();
+            return;
+        default:
+            driveDirection();
+        }
 }

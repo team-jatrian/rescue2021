@@ -14,7 +14,7 @@
 #define HEBER_UP 120
 #define KIPPER_NEUTRAL 30
 #define KIPPER_DOWN 0
-#define KIPPER_UP 120
+#define KIPPER_UP 110
 
 extern Servo heber, kipper, camera;
 

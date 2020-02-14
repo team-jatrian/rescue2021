@@ -20,6 +20,12 @@ void selectProgram(){
             }
             heber.detach();
             break;
+        case 13: //motor test
+            drv(70, 70, 1000);
+            drv(-70, 70, 1000);
+            drv(70, -70, 1000);
+            drv(-70, -70, 1000);
+            break;
         case 15:
             room();
             break;
@@ -27,9 +33,10 @@ void selectProgram(){
             if (front.read() < 70){
                 obstacle();
             }
-            if (camStatus){
-                camGreen();
+            if (L.value() > 800 && R.value() > 800){
+                room();
             }
+            camGreen();
             drive_line();
             break;
   }       
