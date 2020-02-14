@@ -6,8 +6,15 @@
 #include "us.hpp"
 #include "drv.hpp"
 #include "macros.h"
+#include "cam.hpp"
+#include "gyro.hpp"
+#include "servos.hpp"
+#include "cam.hpp"
 
 void room();
+char getDirection();
 void align();
+void rescue(char);
+void deliveroo();
 
 #endif

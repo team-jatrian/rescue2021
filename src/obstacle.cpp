@@ -1,7 +1,8 @@
 #include "obstacle.h"
 
-//EEPROM: Addr 0: L = left, R = right
-//Addr 1: 0 = Failed, 1 = Succesful
+//EEPROM
+//Addr 0: L = left, R = right
+//Addr 1: 0 = Failed, 1 = Successful
 
 void obstacle() {
   char dir;
@@ -34,7 +35,7 @@ void obstacle() {
         drv(70, -70);
       }
       EEPROM.write(1, 1);
-      L.threshold = 120;
+      L.threshold = L_DEFAULT;
       break;
 
     case 'L':
@@ -51,7 +52,7 @@ void obstacle() {
         drv(-70, 70);
       }
       EEPROM.write(1, 1);
-      R.threshold = 120;
+      R.threshold = L_DEFAULT;
       break;
   }
 }

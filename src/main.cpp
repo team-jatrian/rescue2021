@@ -3,18 +3,19 @@
 #include "selectProgram.h"
 #include "servos.hpp"
 #include "gyro.hpp"
+#include "drv.hpp"
+#include "cam.hpp"
 
 void setup(){
+    setupCam();
     setupServos();
     setupGyro();
+    pinMode(SWITCH, INPUT);
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, HIGH);
-    pinMode(SWITCH, INPUT);
-    CAM.begin(115200, SERIAL_8O2); 
 }
 
 void loop(){
-    //spn(euler());
     selectProgram();
 }
 

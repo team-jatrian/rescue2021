@@ -1,3 +1,3 @@
 #include "sensors.hpp"
 
-sensor L(A4, 120), LI(A3, 120), R(A0, 120), RI(A1, 120), M(A2, 120); //(PORT, threshold)
+sensor L(A4, L_DEFAULT), LI(A3, LI_DEFAULT), R(A0, R_DEFAULT), RI(A1, RI_DEFAULT), M(A2, M_DEFAULT); //(PORT, threshold)

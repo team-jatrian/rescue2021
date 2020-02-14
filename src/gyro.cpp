@@ -19,45 +19,42 @@ void setupGyro(){
 }
 
 void driveDegrees(int16_t angle){
-    imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-    drv(0, 0, 50);
-    int16_t destination = relativeAngle(euler.x(), angle);
+    drv(0, 0, 200);
+    double targetAngle = normAngle(getOrientation() - angle);
     if (angle < 0){
-        while(1){
-            imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-            if (int(euler.x()) == destination){
-                return;
-            }
-            drv(-50, 50);
+        while(angleTolerance(4, targetAngle)){
+            drv(-70, 70);
         }
-        return;
-    }
-    else if (angle > 0){
-        while(1){
-            imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-            if (int(euler.x()) == destination){
-                return;
-            }
-            drv(50, -50);
-        }
-        return;
     }
     else {
-        return;
-     }
+        while(angleTolerance(4, targetAngle)){
+            drv(70, -70);
+        }
+    } 
 }
 
-int relativeAngle(int16_t from, int16_t to){
-    int16_t targetAngle = from + to;
-    if (targetAngle < 0){
-        return 360 + targetAngle;
-    }
-    else if (targetAngle > 360){
-        return targetAngle - 360;
-    }
-    else {
-        return targetAngle;
-    }
+double getOrientation() {
+  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
+  if (euler.x() > 180.0){
+    return euler.x() - 360.0;
+  }
+  else {
+    return euler.x();
+  }
 }
-    
 
+double normAngle(double angle) {
+  if (angle < -180.0){
+    angle += 360.;
+  }
+  else if (angle > 180.0){
+    angle -= 360.;
+  }
+  return angle;
+}
+
+boolean angleTolerance(double tolerance, double targetAngle) {
+  double realAngle = normAngle(targetAngle - getOrientation());
+  spn(abs(realAngle));
+  return (abs(realAngle) > tolerance);
+}

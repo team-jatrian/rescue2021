@@ -7,9 +7,11 @@
 #include "DIP.hpp"
 #include "line.hpp"
 #include "us.hpp"
+#include "obstacle.h"
 #include "sensordebug.hpp"
 #include "room.h"
 #include "gyro.hpp"
+#include "servos.hpp"
 
 extern DIP ps;
 

@@ -9,14 +9,12 @@ void drive_line(){
     if (line.output > 0){
         drv(-abs(int(line.output)), /*abs(int(line.output))*/ 50);
     }
-    
     else if (line.output < 0){
         drv(50 /*abs(int(line.output))*/, -abs(int(line.output)));
     }
     else {
         drv(50, 50);
     }
-    //spn(int(line.output));
 }
 
 int8_t getDeviation(){
@@ -25,6 +23,5 @@ int8_t getDeviation(){
   for (uint8_t i = 0; i < 5; i++) {
     buffer += sensors[i] * weights[i];
   }
-  //spn(buffer);
   return buffer;
 }

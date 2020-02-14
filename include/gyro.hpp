@@ -18,5 +18,8 @@ extern Adafruit_BNO055 bno;
 void setupGyro();
 void driveDegrees(int16_t);
 int relativeAngle(int16_t, int16_t);
+double getOrientation();
+double normAngle(double);
+boolean angleTolerance(double, double);
 
 #endif

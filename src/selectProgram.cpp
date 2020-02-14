@@ -7,16 +7,29 @@ void selectProgram(){
         case 1:
             debug();
             break;
+        case 3:
+            armDown();
+            armUp();
+            deliveroo();
+            break;
+        case 6:
+            heber.attach(HEBER_P);
+            for (uint8_t i = 0; i <= 180; i += 30){
+                heber.write(i);
+                delay(1000);
+            }
+            heber.detach();
+            break;
         case 15:
-            driveDegrees(-90);
-            drv(0, 0, 500);
+            room();
             break;
         default:
-            /*if (L.value() > 300 || R.value() > 300) || LI.value() > 300 || RI.value() > 300){
-                room();
-            }*/
-            onUsRead(70);
-            camGreen();
+            if (front.read() < 70){
+                obstacle();
+            }
+            if (camStatus){
+                camGreen();
+            }
             drive_line();
             break;
   }       
