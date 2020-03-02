@@ -11,22 +11,6 @@ void room(){
     rescue(dir);
 }
 
-char getDirection(){
-    drv(70, 70, 200);
-    driveDegrees(90);
-    drv(0, 0, 200);
-    if (front.read() < 250){
-        driveDegrees(-90);
-        drv(0, 0, 200);
-        return 'l';
-    }
-    else {
-        driveDegrees(-90);
-        drv(0, 0, 200);
-        return 'r';
-    }
-}
-
 void align(){
     camera.write(60);
     drv(-70, 70, 1200);

@@ -18,43 +18,33 @@ void setupGyro(){
     bno.setExtCrystalUse(true);
 }
 
-void driveDegrees(int16_t angle){
-    drv(0, 0, 200);
-    double targetAngle = normAngle(getOrientation() - angle);
-    if (angle < 0){
-        while(angleTolerance(4, targetAngle)){
-            drv(-70, 70);
-        }
+void rotate(int16_t x){
+  double destination, relativeX, origin = getRawX();
+  if (x < 0){
+    destination = 360 - x;
+    while(1){
+      relativeX = getRawX() - origin;
+      if (relativeX > destination){
+        drv(0, 0, 200);
+        break;
+      }
+      drv(-70, 70);
     }
-    else {
-        while(angleTolerance(4, targetAngle)){
-            drv(70, -70);
-        }
-    } 
-}
-
-double getOrientation() {
-  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-  if (euler.x() > 180.0){
-    return euler.x() - 360.0;
   }
   else {
-    return euler.x();
+    destination = x;
+    while(1){
+      relativeX = getRawX() - origin;
+      if (relativeX < destination){
+        drv(0, 0, 200);
+        break;
+      }
+      drv(70, -70);
+    }
   }
 }
 
-double normAngle(double angle) {
-  if (angle < -180.0){
-    angle += 360.;
-  }
-  else if (angle > 180.0){
-    angle -= 360.;
-  }
-  return angle;
-}
-
-boolean angleTolerance(double tolerance, double targetAngle) {
-  double realAngle = normAngle(targetAngle - getOrientation());
-  spn(abs(realAngle));
-  return (abs(realAngle) > tolerance);
+double getRawX(){
+  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
+  return euler.x();
 }
