@@ -16,7 +16,9 @@
 extern Adafruit_BNO055 bno;
 
 void setupGyro();
-void rotate();
+void rotateAbs(int16_t);
 double getRawX();
+
+extern bool gyroStatus;
 
 #endif

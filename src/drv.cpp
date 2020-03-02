@@ -7,7 +7,6 @@ void drv(int8_t x, int8_t y) {
     left.drive(x);
     right.drive(y);
   }
-  
   else {
     left.drive(0);
     right.drive(0);
