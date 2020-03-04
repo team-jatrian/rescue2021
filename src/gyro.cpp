@@ -2,7 +2,7 @@
 
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
 
-bool gyroStatus = true;
+bool gyroStatus;
 
 void setupGyro(){
     pinMode(RST, OUTPUT);
@@ -16,50 +16,39 @@ void setupGyro(){
     {
         spn("bno not detected");
         gyroStatus = false;
-        while(1);
     }
     bno.setExtCrystalUse(true);
+    gyroStatus = true;
 }
 
-void driveDegrees(int16_t angle){
-    drv(0, 0, 200);
-    double targetAngle = normAngle(getOrientation() - angle);
-    if (angle < 0){
-        while(angleTolerance(4, targetAngle)){
-            drv(-70, 70);
-        }
+void rotateAbs(int16_t x){ //absolute x angle rotation
+  drv(0, 0, 200);
+  double relativeX, origin = getRawX();
+  if (x > 180){
+    while(1){
+      relativeX = getRawX() - origin;
+      if (relativeX <= x){
+        drv(0, 0, 200);
+        break;
+      }
+      drv(-70, 70):
     }
-    else {
-        while(angleTolerance(4, targetAngle)){
-            drv(70, -70);
-        }
-    } 
-}
-
-double getOrientation() {
-  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-  if (euler.x() > 180.0){
-    return euler.x() - 360.0;
   }
   else {
-    return euler.x();
+    while(1){
+      relativeX = getRawX() - origin;
+      if (relativeX >= x){
+        drv(0, 0, 200);
+        break;
+      }
+      drv(70, -70);
+    }
   }
 }
 
-double normAngle(double angle) {
-  if (angle < -180.0){
-    angle += 360.;
-  }
-  else if (angle > 180.0){
-    angle -= 360.;
-  }
-  return angle;
-}
-
-boolean angleTolerance(double tolerance, double targetAngle) {
-  double realAngle = normAngle(targetAngle - getOrientation());
-  spn(abs(realAngle));
-  return (abs(realAngle) > tolerance);
+double getRawX(){
+  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
+  return euler.x();
 }
 
 int rawZ(){

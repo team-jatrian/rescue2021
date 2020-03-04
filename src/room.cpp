@@ -93,6 +93,9 @@ void turn(uint16_t d){
     while(readIR(IRFRONT) < d){
         drv(-70, -70);
     }
+void align(){
+    camera.write(60);
+    drv(-70, 70, 1200);
     drv(0, 0, 200);
     drv(-70, 70, 650); 
     drv(0, 0, 200);

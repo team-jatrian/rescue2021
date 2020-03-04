@@ -23,6 +23,9 @@ double getOrientation();
 double normAngle(double);
 boolean angleTolerance(double, double);
 int rawZ();
+void rotateAbs(int16_t);
+double getRawX();
 
+extern bool gyroStatus;
 
 #endif
