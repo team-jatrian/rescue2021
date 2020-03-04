@@ -4,6 +4,12 @@ DRV8834::DRV8834(uint8_t x, uint8_t y, uint8_t z) : ENBL{x}, PHASE{y}, steps{z} 
   initPins();
 }
 
+void DRV8834::altDrive(int8_t x){
+  mappedSpeed = map(x, -100, 100, -255, 255);
+  digitalWrite(PHASE, x < 0);
+  analogWrite(ENBL, abs(mappedSpeed));
+}
+
 void DRV8834::initPins() {
   pinMode(ENBL, OUTPUT);
   pinMode(PHASE, OUTPUT);

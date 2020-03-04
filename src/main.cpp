@@ -14,6 +14,7 @@ void setup(){
     pinMode(SWITCH, INPUT);
     pinMode(LED_BUILTIN, OUTPUT);
     digitalWrite(LED_BUILTIN, HIGH);
+    pinMode(A17, INPUT);
 }
 
 void loop(){

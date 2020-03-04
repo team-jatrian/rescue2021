@@ -2,6 +2,8 @@
 
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
 
+bool gyroStatus = true;
+
 void setupGyro(){
     pinMode(RST, OUTPUT);
     digitalWrite(RST, LOW); //reset routine
@@ -13,6 +15,7 @@ void setupGyro(){
     if(!bno.begin())
     {
         spn("bno not detected");
+        gyroStatus = false;
         while(1);
     }
     bno.setExtCrystalUse(true);
@@ -57,4 +60,10 @@ boolean angleTolerance(double tolerance, double targetAngle) {
   double realAngle = normAngle(targetAngle - getOrientation());
   spn(abs(realAngle));
   return (abs(realAngle) > tolerance);
+}
+
+int rawZ(){
+  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
+  spn(euler.z());
+  return euler.z();
 }

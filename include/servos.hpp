@@ -9,7 +9,7 @@
 #define CAM_P 13
 #define CAM_NEUTRAL 100 
 #define CAM_UP 70
-#define HEBER_NEUTRAL 140 
+#define HEBER_NEUTRAL 170
 #define HEBER_DOWN 0
 #define HEBER_UP 120
 #define KIPPER_NEUTRAL 30

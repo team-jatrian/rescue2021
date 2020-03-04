@@ -48,25 +48,31 @@ void driveDirection(){
     switch(camReceive()){
         case '1':
             driveOnlyInner('L');
-            drv(50, 50, 100);  
-            //driveDegrees(-80);
+            drv(50, 50, 250);  
             drv(0, 0, 200);
-            drv(-50, 50, 800);
+            drv(-50, 50, 850);
             drv(0, 0, 200);
-            drv(70, 70, 100);
+            drv(50, 50, 100);
             CAM.clear();
             return;
         case '2':
             driveOnlyInner('R');
+            drv(50, 50, 250);
+            drv(0, 0, 200);
+            drv(50, -50, 850);
+            drv(0, 0, 200);
             drv(50, 50, 100);
-            drv(0, 0, 200);
-            drv(50, -50, 800);
-            drv(0, 0, 200);
-            drv(70, 70, 100);
             CAM.clear();
             return;
         case '3': 
-            drv(-50, 50, 1600);
+            drv(50, 50, 600);
+            drv(0, 0, 200);
+            drv(-50, 50, 1900);
+            while(!RI.read()){
+                drv(-50, 50);
+            }
+            drv(0, 0, 200);
+            drv(50, 50, 100);
             CAM.clear();
             return;
         case '0':

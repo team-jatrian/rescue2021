@@ -2,12 +2,39 @@
 
 DRV8834 left(2, 23, 17), right(29, 26, 17); //(ENBL, PHASE, "STEPS")
 
-void drv(int8_t x, int8_t y) {
-  if (digitalRead(SWITCH)) {
+int8_t speedDiff = 0;
+
+void altDrv(int8_t x, int8_t y, int32_t z){
+    repeatMillis(z){
+        altDrv(x, y);
+    }
+}
+void altDrv(int8_t x, int8_t y){
     left.drive(x);
     right.drive(y);
+}
+
+void drv(int8_t x, int8_t y) {
+  if (digitalRead(SWITCH)) {
+    if (x > 0){
+        left.drive(x - speedDiff);
+    }
+    else if (x < 0){
+        left.drive(x + speedDiff);
+    }
+    else {
+        left.drive(0);
+    }
+    if (y > 0){
+        right.drive(y - speedDiff);
+    }
+    else if (y < 0){
+        right.drive(y + speedDiff);
+    }
+    else {
+        right.drive(0);
+    }
   }
-  
   else {
     left.drive(0);
     right.drive(0);

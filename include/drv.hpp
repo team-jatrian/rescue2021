@@ -10,7 +10,10 @@
 #define SWITCH 3
 
 extern DRV8834 left, right; 
+extern int8_t speedDiff;
 
+void altDrv(int8_t, int8_t, int32_t);
+void altDrv(int8_t, int8_t);
 void drv(int8_t, int8_t);
 void drv(int8_t , int8_t , int32_t);
 void driveOnlyInner(char);

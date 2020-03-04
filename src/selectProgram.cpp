@@ -27,17 +27,35 @@ void selectProgram(){
             drv(-70, -70, 1000);
             break;
         case 15:
-            room();
+            sketchyRoom();
             break;
         default:
             if (front.read() < 70){
                 obstacle();
             }
+            /*if (gyroStatus){
+                if (rawZ() < -25){
+                    speedDiff = 10;
+                }
+                else if (rawZ() > 6){
+                    heber.write(60);
+                    speedDiff = -10;
+                }
+                else {
+                    heber.write(HEBER_NEUTRAL);
+                    speedDiff = 0;
+                }
+            }*/
             if (L.value() > 800 && R.value() > 800){
-                room();
+                drv(0, 0, 500);
+                sketchyRoom();
             }
             camGreen();
             drive_line();
             break;
   }       
+}
+
+void newRoom(){
+    
 }

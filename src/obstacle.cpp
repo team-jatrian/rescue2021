@@ -20,6 +20,7 @@ void obstacle() {
     }
     writeAttempt(dir);
   }
+  dir = 'L'; //nice
   switch (dir) {
     case 'R':
       L.threshold = 100;

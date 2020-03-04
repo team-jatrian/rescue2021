@@ -1,93 +1,134 @@
 #include "room.h"
 
-void room(){
-    CAM.write(7);
-    armUp();
+void sketchyRoom(){
     camera.attach(CAM_P);
     camera.write(CAM_UP);
-    delay(1500);
-    char dir = 'l';
-    //align();
-    rescue(dir);
-}
-
-char getDirection(){
-    drv(70, 70, 200);
-    driveDegrees(90);
-    drv(0, 0, 200);
-    if (front.read() < 250){
-        driveDegrees(-90);
-        drv(0, 0, 200);
-        return 'l';
-    }
-    else {
-        driveDegrees(-90);
-        drv(0, 0, 200);
-        return 'r';
-    }
-}
-
-void align(){
-    camera.write(60);
-    drv(-70, 70, 1200);
-    drv(0, 0, 200);
-    drv(-70, -70, 3000);
-    drv(0, 0, 200);
-}
-
-void rescue(char dir){
-    for(uint8_t d = 100; d < 400; d += 20){
-        for (uint8_t i = 0; i < 4; i++){
-            while(1){
-                if (front.read() < d){
-                    drv(0, 0, 200);
-                    CAM.clear();
-                    spn(camReceive());
-                    switch (camReceive()){
-                        case '1':
-                            drv(0, 0, 500);
-                            armDown();
-                            armUp();
-                            CAM.clear(); 
-                            break;  
-                        case '6':
-                            //STOP;
-                        default:
-                            drv(0, 0, 200);
-                            if (dir == 'l'){
-                                drv(70, -70, 600);
-                                drv(0, 0, 100);
-                                drv(-70, -70, 700); 
-                            }
-                            else {
-                                drv(-70, 70, 600);
-                                drv(0, 0, 100);
-                                drv(-70, -70, 700); 
-                            }
-                            break;
-                    }
-                }
+    for(uint16_t d = 60; d < 200; d += 30){
+        for(uint8_t i = 0; i < 3; i++){
+            while(front.read() > 80){
                 drv(70, 70);
+                if(L.read() || LI.read() || M.read()){
+                    drv(70, 70, 300);
+                    drv(-70, -70, 900);
+                    drv(70, -70, 800);
+                    drv(0, 0, 200);
+                }
+            }
+            drv(0, 0, 200);
+            drv(70, -70, 800);
+            drv(0, 0, 200);
+            drv(-70, -70, 400);         
+        }
+        drv(-70, -70, 600);
+        drv(0, 0, 200);
+        drv(70, -70, 800);
+        drv(0, 0, 200);
+        drv(-70, -70, 400);
+    }   
+}
+
+void room(){
+    CAM.write(7);
+    camera.attach(CAM_P);
+    camera.write(CAM_UP);
+    for(uint16_t d = 7; d < 25; d += 2){
+        for(uint8_t i = 0; i < 4; i++){
+            while(1){
+                /*if (readIR(IRFRONT) < d){
+                    while(readIR(IRFRONT) > 6){
+                        drv(70, 70);
+                    }
+                    drv(0, 0, 500);
+                    CAM.clear();
+                    selector(d);
+                    break;
+                }
+                else {
+                    drv(70, 70);
+                }*/
+                if (camReceive() == '1'){
+                    ball();
+                }
+                else if (readIR(IRFRONT) < 6){
+                    drv(0, 0, 500); 
+                    selector(d);
+                }
+                else { 
+                    drv(70, 70);
+                }
             }
         }
     }
 }
 
-void deliveroo(){
-    camera.attach(CAM_P);
-    camera.write(CAM_UP);
-    delay(1500);
+void selector(uint16_t d){
+    switch(camReceive()){
+        case '\0':
+            selector(d); 
+        case '1': 
+            ball();
+            CAM.clear(); 
+            break;
+        default: 
+            turn(d);
+            CAM.clear();
+            break;
+    }
+}
+
+void ball(){
+    switch(camReceive()){
+        case '\0':
+            ball();
+        default: 
+            spn("KUGEL");
+            armDown();
+            armUp();
+            findZone();
+            break;
+    }
+}
+
+void turn(uint16_t d){
+    while(readIR(IRFRONT) < d){
+        drv(-70, -70);
+    }
     drv(0, 0, 200);
-    drv(-70, 70, 400);
-    drv(70, 70, 500);
-    drv(70, -70, 450);
-    drv(70, 70, 500);
+    drv(-70, 70, 650); 
+    drv(0, 0, 200);
+    drv(-70, -70, d*25);
+}
+
+void findZone(){
+    drv(0, 0, 200);
+    for(uint8_t i = 0; i < 4; i++){
+        while(!(readIR(IRFRONT) > 6)){
+            if (R.read() || RI.read() || M.read()){
+                deliveroo();
+                return;
+            }
+            drv(70, 70);
+        }
+        drv(0, 0, 200);
+        drv(-70, 70, 650);
+        drv(0, 0, 200);
+        drv(-70, -70, 300);
+        break;
+    }
+}
+
+void deliveroo(){
+    drv(0, 0, 200);
+    drv(-70, -70, 300);
     drv(0, 0, 200);
     camera.write(CAM_NEUTRAL);
-    heber.write(60);
-    kipper.write(20);
+    delay(1000);
+    heber.write(HEBER_DOWN);
+    kipper.write(KIPPER_DOWN);
     delay(1500);
-    kipper.write(180);
+    heber.write(HEBER_UP);
+    kipper.write(KIPPER_UP);
     delay(1500);
-    STOP;
+    camera.write(CAM_UP);
+    delay(1000);
 }

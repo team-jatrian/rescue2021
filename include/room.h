@@ -11,10 +11,14 @@
 #include "servos.hpp"
 #include "cam.hpp"
 
+#define IRFRONT A17
+
+void sketchyRoom();
 void room();
-char getDirection();
-void align();
-void rescue(char);
+void selector(uint16_t);
+void ball();
+void turn(uint16_t);
+void findZone();
 void deliveroo();
 
 #endif

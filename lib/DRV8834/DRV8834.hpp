@@ -17,6 +17,7 @@ class DRV8834 {
     uint8_t PHASE;
     uint8_t steps = 17;
 
+    void altDrive(int8_t);
     void drive(int16_t);
     DRV8834(uint8_t, uint8_t, uint8_t);
 };
