@@ -9,7 +9,7 @@
 
 extern myPID line;
 
-void drive_line();
+void driveLine();
 int8_t getDeviation();
 void altDrive(bool);
 

@@ -10,7 +10,6 @@ void selectProgram(){
         case 3:
             armDown();
             armUp();
-            deliveroo();
             break;
         case 6:
             heber.attach(HEBER_P);
@@ -51,7 +50,7 @@ void selectProgram(){
                 sketchyRoom();
             }
             camGreen();
-            drive_line();
+            driveLine();
             break;
   }       
 }

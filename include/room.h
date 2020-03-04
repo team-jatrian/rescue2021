@@ -14,11 +14,5 @@
 #define IRFRONT A17
 
 void sketchyRoom();
-void room();
-void selector(uint16_t);
-void ball();
-void turn(uint16_t);
-void findZone();
-void deliveroo();
 
 #endif

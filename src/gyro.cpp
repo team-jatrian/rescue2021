@@ -31,7 +31,7 @@ void rotateAbs(int16_t x){ //absolute x angle rotation
         drv(0, 0, 200);
         break;
       }
-      drv(-70, 70):
+      drv(-70, 70);
     }
   }
   else {
@@ -51,8 +51,3 @@ double getRawX(){
   return euler.x();
 }
 
-int rawZ(){
-  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-  spn(euler.z());
-  return euler.z();
-}

@@ -4,7 +4,7 @@ myPID line(double(0), 0, double(16), double(0), double(), double(0), double(-100
 
 const int8_t weights[5] = {-4, -2, 0, 2, 4};
 
-void drive_line(){
+void driveLine(){
   line.update(getDeviation());
   if (abs(line.output) < 50){
     if (line.output > 0){
