@@ -27,8 +27,10 @@ void rotateAbs(int16_t x){ //absolute x angle rotation
   if (x > 180){
     while(1){
       relativeX = getRawX() - origin;
-      if (relativeX <= x){
+      spn(relativeX);
+      if (relativeX <= x && relativeX != 0.00){
         drv(0, 0, 200);
+        STOP;
         break;
       }
       drv(-70, 70);
@@ -37,8 +39,10 @@ void rotateAbs(int16_t x){ //absolute x angle rotation
   else {
     while(1){
       relativeX = getRawX() - origin;
-      if (relativeX >= x){
+      spn(relativeX);
+      if (relativeX >= x && relativeX != 0.00){
         drv(0, 0, 200);
+        STOP;
         break;
       }
       drv(70, -70);
